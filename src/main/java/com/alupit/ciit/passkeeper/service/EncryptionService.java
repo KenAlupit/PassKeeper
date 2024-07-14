@@ -13,10 +13,6 @@ public class EncryptionService {
     public SecretKey generateSecretKey() throws Exception {
         // Create a KeyGenerator for AES
         KeyGenerator keyGen = KeyGenerator.getInstance(ALGORITHM);
-
-        // Generate a 128-bit key (16 bytes)
-        keyGen.init(128);
-
         return keyGen.generateKey();
     }
 
@@ -42,8 +38,6 @@ public class EncryptionService {
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
 
         // Convert decrypted byte array to String (if applicable)
-        String decryptedData = new String(decryptedBytes);
-
-        return decryptedData;
+        return new String(decryptedBytes);
     }
 }

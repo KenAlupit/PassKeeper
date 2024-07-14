@@ -38,14 +38,19 @@ public class AccountValidationService {
 
     public boolean validateUserCredentials(String username, String password) throws Exception {
         SecretKey secretKey = null;
-        for (UserInfo i : userService.getAllUserInfo()){
-            for (UserAccountKeys j : userAccountKeyService.getAllUserAccountKeys()){
-                if (username.equals(j.getUsername())){
-                    secretKey = j.getSecretKey();
-                    System.out.println(hashingService.encodeBase64(secretKey.getEncoded()));
-                }
+        String storedPassword = null;
+
+        for (UserAccountKeys j : userAccountKeyService.getAllUserAccountKeys()){
+            if (username.equals(j.getUsername())){
+                secretKey = j.getSecretKey();
+                break;
             }
-            String storedPassword = encryptionService.decryptData(i.getPassword(), secretKey);
+        }
+
+        for (UserInfo i : userService.getAllUserInfo()){
+            if (username.equals(i.getUsername()) && secretKey != null){
+                storedPassword = encryptionService.decryptData(i.getPassword(), secretKey);
+            }
             if (username.equals(i.getUsername()) && verifyPassword(password, storedPassword, i.getSaltBase64())){
                 return true;
             }

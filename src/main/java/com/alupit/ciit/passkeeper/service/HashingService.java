@@ -56,6 +56,7 @@ public class HashingService {
         String hashedPasswordBase64 = encodeBase64(hashedPassword);
 
         SecretKey secretKey = encryptionService.generateSecretKey();
+        System.out.println(encodeBase64(secretKey.getEncoded()));
 
         userAccountKeyService.saveUserAccountKey(new UserAccountKeys(userInfo.getUsername(), secretKey));
 
