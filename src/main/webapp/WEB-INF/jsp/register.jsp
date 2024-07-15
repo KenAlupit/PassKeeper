@@ -18,7 +18,7 @@
         Confirm Password: <input type = "text" name = "confirmpassword" style = "margin-bottom: 1%" required/> <!-- Password input field -->
         <br />
         <div style="text-align: center;">
-            <input type = "submit" value = "Login" /> <!-- Submit button to submit the form -->
+            <input type = "submit" value = "Create Account" /> <!-- Submit button to submit the form -->
             <input type="reset" value = "Clear"/> <!-- Reset button to clear the form inputs -->
 
             <c:if test="${not empty param.error}">

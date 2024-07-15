@@ -5,7 +5,7 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 import com.alupit.ciit.passkeeper.entity.UserAccountKeys;
-import com.alupit.ciit.passkeeper.entity.UserInfo;
+import com.alupit.ciit.passkeeper.entity.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,10 +45,10 @@ public class HashingService {
         return md.digest(data.getBytes());
     }
 
-    public UserInfo generateSaltHashedPassword(UserInfo userInfo) throws Exception {
+    public UserAccount generateSaltHashedPassword(UserAccount userAccount) throws Exception {
         // Generate random salt and hash the password
         byte[] salt = generateRandomSalt();
-        byte[] hashedPassword = generateHash(userInfo.getPassword(), salt);
+        byte[] hashedPassword = generateHash(userAccount.getPassword(), salt);
 
         // Encode salt and hashedPassword to Base64
         String saltBase64 = encodeBase64(salt);
@@ -58,12 +58,12 @@ public class HashingService {
         SecretKey secretKey = encryptionService.generateSecretKey();
 
         // Save the secret key associated with the user
-        userAccountKeyService.saveUserAccountKey(new UserAccountKeys(userInfo.getUsername(), secretKey));
+        userAccountKeyService.saveUserAccountKeys(new UserAccountKeys(userAccount.getUsername(), secretKey));
 
         // Update UserInfo with salt and encrypted hashed password
-        userInfo.setSaltBase64(saltBase64);
-        userInfo.setPassword(encryptionService.encryptData(hashedPasswordBase64, secretKey));
+        userAccount.setSaltBase64(saltBase64);
+        userAccount.setPassword(encryptionService.encryptData(hashedPasswordBase64, secretKey));
 
-        return userInfo;
+        return userAccount;
     }
 }

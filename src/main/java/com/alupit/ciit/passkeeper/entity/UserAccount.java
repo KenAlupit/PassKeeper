@@ -3,8 +3,8 @@ package com.alupit.ciit.passkeeper.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user_account") // Specifies the table name for this entity
-public class UserInfo {
+@Table(name = "user_accounts") // Specifies the table name for this entity
+public class UserAccount {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +20,12 @@ public class UserInfo {
     private String saltBase64; // Column to store the salt in Base64 format
 
     // Default constructor (required by JPA)
-    public UserInfo(){
+    public UserAccount(){
 
     }
 
     // Constructor with parameters for username and password
-    public UserInfo(String username, String password) {
+    public UserAccount(String username, String password) {
         this.username = username;
         this.password = password;
     }

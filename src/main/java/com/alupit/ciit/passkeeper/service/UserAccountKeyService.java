@@ -13,7 +13,7 @@ public class UserAccountKeyService {
     @Autowired
     private UserAccountKeyRepo userAccountKeyRepo;
 
-    public UserAccountKeys saveUserAccountKey(UserAccountKeys userAccountKeys) {
+    public UserAccountKeys saveUserAccountKeys(UserAccountKeys userAccountKeys) {
         return userAccountKeyRepo.save(userAccountKeys); // Save the user account keys using the repository to the database
     }
 

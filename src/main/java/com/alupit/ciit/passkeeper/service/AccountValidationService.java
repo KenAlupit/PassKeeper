@@ -1,7 +1,7 @@
 package com.alupit.ciit.passkeeper.service;
 
 import com.alupit.ciit.passkeeper.entity.UserAccountKeys;
-import com.alupit.ciit.passkeeper.entity.UserInfo;
+import com.alupit.ciit.passkeeper.entity.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.security.MessageDigest;
 public class AccountValidationService {
 
     @Autowired
-    private UserService userService;
+    private UserAccountService userAccountService;
 
     @Autowired
     private UserAccountKeyService userAccountKeyService;
@@ -49,7 +49,7 @@ public class AccountValidationService {
         }
 
         // Iterate through all user info to find the matching username and validate password
-        for (UserInfo i : userService.getAllUserInfo()){
+        for (UserAccount i : userAccountService.getAllUserInfo()){
             if (username.equals(i.getUsername()) && secretKey != null){
                 // Decrypt stored password using secret key
                 storedPassword = encryptionService.decryptData(i.getPassword(), secretKey);

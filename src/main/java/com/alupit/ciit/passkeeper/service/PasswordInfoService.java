@@ -17,7 +17,7 @@ public class PasswordInfoService {
         return passwordInfoRepo.save(passwordInfo); // Save the passwords using the repository to the database
     }
 
-    public List<PasswordInfo> getAllUserAccountKeys() {
+    public List<PasswordInfo> getAllPasswordInfo() {
         return passwordInfoRepo.findAll(); // Retrieve all passwords using the repository from the database
     }
 }
