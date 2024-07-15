@@ -9,5 +9,4 @@ public class PassKeeperApplication {
     public static void main(String[] args) {
         SpringApplication.run(PassKeeperApplication.class, args);
     }
-
 }
