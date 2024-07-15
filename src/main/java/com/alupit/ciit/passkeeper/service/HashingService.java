@@ -20,12 +20,10 @@ public class HashingService {
     @Autowired
     private UserAccountKeyService userAccountKeyService;
 
-    // Method to decode Base64-encoded strings
     public String encodeBase64(byte[] base64) {
         return Base64.getEncoder().encodeToString(base64);
     }
 
-    // Method to decode Base64-encoded strings
     public byte[] decodeBase64(String base64) {
         return Base64.getDecoder().decode(base64);
     }
@@ -40,7 +38,7 @@ public class HashingService {
     }
 
     public byte[] generateHash(String data , byte[] salt) throws Exception{
-        // Hash the password with the salt
+        // Hash the data with SHA-256 and the provided salt
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(salt);
 
@@ -48,18 +46,21 @@ public class HashingService {
     }
 
     public UserInfo generateSaltHashedPassword(UserInfo userInfo) throws Exception {
+        // Generate random salt and hash the password
         byte[] salt = generateRandomSalt();
         byte[] hashedPassword = generateHash(userInfo.getPassword(), salt);
 
-        // Store the salt and hashedPassword in the database
+        // Encode salt and hashedPassword to Base64
         String saltBase64 = encodeBase64(salt);
         String hashedPasswordBase64 = encodeBase64(hashedPassword);
 
+        // Generate a secret key for encryption
         SecretKey secretKey = encryptionService.generateSecretKey();
-        System.out.println(encodeBase64(secretKey.getEncoded()));
 
+        // Save the secret key associated with the user
         userAccountKeyService.saveUserAccountKey(new UserAccountKeys(userInfo.getUsername(), secretKey));
 
+        // Update UserInfo with salt and encrypted hashed password
         userInfo.setSaltBase64(saltBase64);
         userInfo.setPassword(encryptionService.encryptData(hashedPasswordBase64, secretKey));
 

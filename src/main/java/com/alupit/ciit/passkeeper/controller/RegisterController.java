@@ -29,7 +29,6 @@ public class RegisterController {
     // Handler method for GET requests to "/register" endpoint
     @GetMapping("/register")
     public String showRegistrationForm(HttpServletResponse response) {
-
         // Set HTTP headers to prevent caching
         cacheService.setNoCacheHeaders(response);
 
@@ -37,17 +36,26 @@ public class RegisterController {
         return "register";
     }
 
+    // Handler method for POST requests to "/register" endpoint
     @PostMapping("/register")
     public String register(String username, String password, String confirmpassword) throws Exception {
-        // Validate user credentials using PasswordService
+        // Validate user credentials and registration inputs
+
+        // Check if passwords match and if the username is not already registered
         if (password.equals(confirmpassword) && !accountValidationService.validateUserCredentials(username, password)) {
+            // Create a new UserInfo object with username and password
             UserInfo userInfo = new UserInfo(username, password);
+
+            // Generate salted and hashed password using HashingService
             userService.saveUserInfo(hashingService.generateSaltHashedPassword(userInfo));
         } else if (accountValidationService.validateUserCredentials(username, password)) {
-            return "redirect:/register?error=Account already exists"; // Redirect to registration page with error message
+            // Redirect to registration page with error message if account already exists
+            return "redirect:/register?error=Account already exists";
         } else{
+            // Redirect to registration page with error message if passwords do not match
             return "redirect:/register?error=Passwords do not match"; // Redirect to registration page with error message
         }
+        // Redirect to login page after successful registration
         return "login";
     }
 }

@@ -40,6 +40,7 @@ public class AccountValidationService {
         SecretKey secretKey = null;
         String storedPassword = null;
 
+        // Iterate through all user account keys to find the matching secret key for the username
         for (UserAccountKeys j : userAccountKeyService.getAllUserAccountKeys()){
             if (username.equals(j.getUsername())){
                 secretKey = j.getSecretKey();
@@ -47,14 +48,18 @@ public class AccountValidationService {
             }
         }
 
+        // Iterate through all user info to find the matching username and validate password
         for (UserInfo i : userService.getAllUserInfo()){
             if (username.equals(i.getUsername()) && secretKey != null){
+                // Decrypt stored password using secret key
                 storedPassword = encryptionService.decryptData(i.getPassword(), secretKey);
             }
+
+            // Verify the password using stored hashed password and salt
             if (username.equals(i.getUsername()) && verifyPassword(password, storedPassword, i.getSaltBase64())){
-                return true;
+                return true; // Credentials are valid
             }
         }
-        return false;
+        return false; // Credentials are invalid
     }
 }

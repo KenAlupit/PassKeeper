@@ -14,10 +14,10 @@ public class UserService {
     private UserRepo userRepo;
 
     public UserInfo saveUserInfo(UserInfo userInfo){
-        return userRepo.save(userInfo);
+        return userRepo.save(userInfo); // Save the user information using the repository to the database
     }
 
     public List<UserInfo> getAllUserInfo(){
-        return userRepo.findAll();
+        return userRepo.findAll(); // Retrieve all user information using the repository from the database
     }
 }

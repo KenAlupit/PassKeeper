@@ -8,21 +8,23 @@ import org.springframework.stereotype.Service;
 @Service
 public class EncryptionService {
 
-    private static final String ALGORITHM = "AES";
+    private static final String ALGORITHM = "AES"; // Algorithm used for encryption and decryption
 
     public SecretKey generateSecretKey() throws Exception {
         // Create a KeyGenerator for AES
         KeyGenerator keyGen = KeyGenerator.getInstance(ALGORITHM);
-        return keyGen.generateKey();
+        return keyGen.generateKey(); // Generate and return a new AES SecretKey
     }
 
     public String encryptData(String data, SecretKey secretKey) throws Exception {
-        // Encrypt the hashed password
+        // Initialize AES Cipher for encryption
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+        // Encrypt the data
         byte[] encryptedData = cipher.doFinal(data.getBytes());
 
-        // Encode encryptedPassword to Base64
+        // Encode encrypted data to Base64
         return Base64.getEncoder().encodeToString(encryptedData);
     }
 
@@ -34,7 +36,7 @@ public class EncryptionService {
         Cipher cipher = Cipher.getInstance(ALGORITHM);
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
 
-        // Decrypt the encrypted data
+        // Decrypt the data
         byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
 
         // Convert decrypted byte array to String (if applicable)

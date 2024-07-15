@@ -33,7 +33,7 @@ public class LoginController {
         // Set HTTP headers to prevent caching
         cacheService.setNoCacheHeaders(response);
 
-        // Store user session and user grades in the session attributes for display in home view
+        // Store user session with the username
         session.setAttribute("userSession", userSession);
 
         // Return the name of the view (home.jsp in this case)
