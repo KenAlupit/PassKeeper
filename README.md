@@ -1,6 +1,6 @@
 # Pass Keeper
 
-PassKey is a password manager developed using Spring Boot. It features a front end built with JSP (JavaServer Pages). The application securely stores passwords in a MySQL database, utilizing Advanced Encryption Standard (AES) for encryption and hashing techniques to enhance security.
+PassKeeper is a password manager developed using Spring Boot. It features a front end built with JSP (JavaServer Pages). The application securely stores passwords in a MySQL database, utilizing Advanced Encryption Standard (AES) for encryption and hashing techniques to enhance security.
 
 Key features of PassKey include:
 
