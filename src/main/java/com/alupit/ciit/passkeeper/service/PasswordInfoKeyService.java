@@ -20,4 +20,7 @@ public class PasswordInfoKeyService {
     public List<PasswordInfoKeys> getAllPasswordInfoKeys() {
         return passwordInfoKeyRepo.findAll(); // Retrieve all password keys using the repository from the database
     }
+    public void deletePasswordInfoKey(int id) {
+        passwordInfoKeyRepo.deleteById(id);
+    }
 }

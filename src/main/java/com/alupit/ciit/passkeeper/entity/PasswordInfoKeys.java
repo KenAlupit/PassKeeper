@@ -26,8 +26,9 @@ public class PasswordInfoKeys {
     public PasswordInfoKeys() {
     }
 
-    // Constructor with parameters for username and secretKey
-    public PasswordInfoKeys(String passwordOwner, SecretKey secretKey) {
+    // Constructor with parameters for username,platform(name) and secretKey
+    public PasswordInfoKeys(String name, String passwordOwner, SecretKey secretKey) {
+        this.name = name;
         this.passwordOwner = passwordOwner;
         this.secretKey = secretKey;
     }
@@ -40,6 +41,16 @@ public class PasswordInfoKeys {
     // Setter for keyId
     public void setKeyId(int keyId) {
         this.keyId = keyId;
+    }
+
+    // Getter for name
+    public String getName(){
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name){
+        this.name = name;
     }
 
     // Getter for username

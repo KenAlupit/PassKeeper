@@ -26,8 +26,7 @@ public class PasswordInfo {
     @Column(name = "salt_base64")
     private String saltBase64; // Column to store the salt in Base64 format
 
-    public PasswordInfo(int passwordId, String name, String username, String password) {
-        this.passwordId = passwordId;
+    public PasswordInfo(String name, String username, String password) {
         this.name = name;
         this.username = username;
         this.password = password;
