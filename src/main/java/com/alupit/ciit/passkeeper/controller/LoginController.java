@@ -56,15 +56,17 @@ public class LoginController {
             if (session_username.equals(i.getPasswordOwner())) {
                 //iterate through all password info keys
                 for (PasswordInfoKeys k : passwordInfoKeyService.getAllPasswordInfoKeys()){
-                    // if the name and owners match
-                    if (k.getPasswordOwner().equals(i.getPasswordOwner()) && k.getName().equals(i.getName())){
-                        //String decrypted_Password = encryptionService.decryptData(i.getPassword(), k.getSecretKey());
-                        //i.setPassword(decrypted_Password);
+                    // if the ids match
+                    Integer KeyID = k.getKeyId(); //type int cannot have methods
+                    Integer PassID = i.getPasswordId();
+                    if (KeyID.equals(PassID)){
+                        String decrypted_Password = encryptionService.decryptData(i.getPassword(), k.getSecretKey());
+                        i.setPassword(decrypted_Password);
                         // add each instance of i to the list with the decrypted password
-
+                        passwordInfoList.add(i);
                     }
                 }
-                passwordInfoList.add(i);
+
             }
         }
         // Store user session with the username
@@ -94,5 +96,11 @@ public class LoginController {
         } else {
             return "redirect:/login?error=invalid username or password"; // Redirect to login page with error message
         }
+    }
+
+    @GetMapping("/logout")//try
+    public String logout() {
+        userSession.setUsername(null);
+        return "redirect:/login";
     }
 }

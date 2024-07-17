@@ -72,24 +72,30 @@ public class HashingService {
         return userAccount;
     }
     // for passwordinfo
-    public PasswordInfo generateSaltHashedPassword(PasswordInfo passwordInfo) throws Exception {
-        // Generate random salt and hash the password
-        byte[] salt = generateRandomSalt();
-        byte[] hashedPassword = generateHash(passwordInfo.getPassword(), salt);
-
-        // Encode salt and hashedPassword to Base64
-        String saltBase64 = encodeBase64(salt);
-        String hashedPasswordBase64 = encodeBase64(hashedPassword);
-
+    public PasswordInfo generateEncryptedPassword(PasswordInfo passwordInfo) throws Exception {
         // Generate a secret key for encryption
         SecretKey secretKey = encryptionService.generateSecretKey();
 
         // Save the secret key associated with the user
         passwordInfoKeyService.savePasswordInfoKeys(new PasswordInfoKeys(passwordInfo.getName(), passwordInfo.getPasswordOwner(), secretKey));
 
-        // Update UserInfo with salt and encrypted hashed password
-        passwordInfo.setSaltBase64(saltBase64);
-        passwordInfo.setPassword(encryptionService.encryptData(hashedPasswordBase64, secretKey));
+        // Update PasswordInfo with encrypted password
+        passwordInfo.setPassword(encryptionService.encryptData(passwordInfo.getPassword(), secretKey));
+
+        return passwordInfo;
+    }
+
+    public PasswordInfo updatePassword(PasswordInfo passwordInfo, PasswordInfoKeys passwordInfoKeys) throws Exception {
+
+        // Generate a secret key for encryption
+        SecretKey secretKey = encryptionService.generateSecretKey();
+
+        // Update the new secret key associated with the user
+        passwordInfoKeys.setSecretKey(secretKey);
+
+        // Update PasswordInfo with encrypted password
+//        passwordInfo.setSaltBase64(saltBase64);
+        passwordInfo.setPassword(encryptionService.encryptData(passwordInfo.getPassword(), secretKey));
 
         return passwordInfo;
     }

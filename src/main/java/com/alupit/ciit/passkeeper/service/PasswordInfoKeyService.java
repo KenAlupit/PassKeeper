@@ -1,5 +1,6 @@
 package com.alupit.ciit.passkeeper.service;
 
+import com.alupit.ciit.passkeeper.entity.PasswordInfo;
 import com.alupit.ciit.passkeeper.entity.PasswordInfoKeys;
 import com.alupit.ciit.passkeeper.repository.PasswordInfoKeyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class PasswordInfoKeyService {
 
     public List<PasswordInfoKeys> getAllPasswordInfoKeys() {
         return passwordInfoKeyRepo.findAll(); // Retrieve all password keys using the repository from the database
+    }
+    public PasswordInfoKeys getPasswordInfoKeybyid(int id) {
+        return passwordInfoKeyRepo.findById(id).orElse(null); // Retrieve passwordkey related to the id
     }
     public void deletePasswordInfoKey(int id) {
         passwordInfoKeyRepo.deleteById(id);

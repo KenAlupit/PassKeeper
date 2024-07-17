@@ -18,7 +18,6 @@
     <label>Password:</label>
     <input type="text" name="password" value="${passwordInfo.password}" />
     <input type="hidden" name="passwordOwner" value="${passwordInfo.passwordOwner}" />
-    <input type="hidden" name="saltBase64" value="${passwordInfo.saltBase64}" />
     <button type="submit">Save</button>
 </form>
 </body>

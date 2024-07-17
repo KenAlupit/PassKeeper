@@ -6,6 +6,16 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Home</title>
+    <script>
+        //dynamically change password field without refreshing the whole page
+        function generatePassword() {
+            fetch('/generate-password')
+                .then(response => response.text())
+                .then(password => {
+                    document.getElementById('password').value = password;
+                });
+        }
+    </script>
 </head>
 <body>
 <form action="savePasswordInfo" method="post">
@@ -14,9 +24,9 @@
     <label>Username:</label>
     <input type="text" name="username"/>
     <label>Password:</label>
-    <input type="text" name="password" />
+    <input type="text" id="password" name="password"/>
+    <button type="button" onclick="generatePassword()">Generate Password</button>
     <input type="hidden" name="passwordOwner" value="${session_username}" />
-    <input type="hidden" name="saltBase64" value="Von" />
     <button type="submit">Save</button>
 </form>
 </body>
