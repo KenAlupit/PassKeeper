@@ -33,7 +33,7 @@
     </div>
    
 <form action="savePasswordInfo" method="post">
-    <label>Name:</label>
+    <label>Platform:</label>
     <input type="text" name="name"/>
     <label>Username:</label>
     <input type="text" name="username"/>

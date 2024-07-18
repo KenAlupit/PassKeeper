@@ -24,7 +24,7 @@
         </div>
         <form action="../showFormForUpdate/${passwordInfo.passwordId}" method="post">
             <input type="hidden" name="id" value="${passwordInfo.passwordId}" />
-            <label>Name:</label>
+            <label>Platform:</label>
             <input type="text" name="name" value="${passwordInfo.name}" />
             <label>Username:</label>
             <input type="text" name="username" value="${passwordInfo.username}" />
