@@ -15,7 +15,7 @@
     <script>
         //dynamically change password field without refreshing the whole page
         function generatePassword() {
-            fetch('/generate-password')
+            fetch('/PassKeeper/generate-password')
                 .then(response => response.text())
                 .then(password => {
                     document.getElementById('password').value = password;
@@ -44,7 +44,7 @@
     <button type="submit">Save</button>
 </form>
 <div class="btns">
-    <a href="/" class="addbtn">Back to Dashboard</a> <a href="logout" class="logoutbtn">Log Out</a>
+    <a href="/PassKeeper/" class="addbtn">Back to Dashboard</a> <a href="logout" class="logoutbtn">Log Out</a>
 </div>
   </body>
   </html>
