@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PassKeeper||Login</title>
-    <link rel="icon" href="logo.png">
+    <link rel="icon" href="${pageContext.request.contextPath}/css/logo.png">
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!--Bootsrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -24,7 +24,7 @@
     <div class="row border rounder-5 p-3 bg-white shadow box-area">
         <div class="col-md-6 rounder-4 d-flex justify-content-center align-items-center flex-column left-box " style="background: #ffff;">
             <div class="featured-image mb-3">
-                <img src="Logo.png" class ="img-fluid" style="width: 500px;">
+                <img src="${pageContext.request.contextPath}/css/logo.png" class ="img-fluid" style="width: 500px;">
             </div>
         </div>
         <div class="col-md-6">
