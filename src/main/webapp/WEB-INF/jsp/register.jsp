@@ -42,7 +42,7 @@
                     <input type="password" class="form-control form-control-lg bg-light fs-6" name="confirmpassword" placeholder="Confirm Password" required>
                 </div>
                 <div>
-                    <small>Already have an account? <a href="/login">Login</a></small>
+                    <small>Already have an account? <a href="/PassKeeper/login">Login</a></small>
                 </div>
             </div>
             <div class="input-group mb-3">

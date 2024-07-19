@@ -44,7 +44,7 @@
     <button type="submit">Save</button>
 </form>
 <div class="btns">
-    <a href="/PassKeeper/" class="addbtn">Back to Dashboard</a> <a href="logout" class="logoutbtn">Log Out</a>
+    <a href="/PassKeeper/" class="addbtn">Back to Dashboard</a> <a href="/PassKeeper/logout" class="logoutbtn">Log Out</a>
 </div>
   </body>
   </html>
